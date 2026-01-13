@@ -14,3 +14,9 @@
     -fx-border-radius: 20;
 }
 
+.anchor-pane-2 {
+    -fx-background-color: white;
+    -fx-background-radius: 30;
+    -fx-border-radius: 20;
+}
+
