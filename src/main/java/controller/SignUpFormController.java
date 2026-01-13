@@ -125,6 +125,5 @@ public class SignUpFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-//        txtReEnterPassword.setEditable(false);
     }
 }

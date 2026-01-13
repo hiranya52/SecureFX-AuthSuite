@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -23,26 +23,31 @@
                 <VBox HBox.hgrow="ALWAYS">
                     <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" spacing="20.0">
-                            <children>
-                                <Label text="Dashboard" textFill="WHITE">
-                                    <font>
-                                        <Font name="System Bold" size="32.0" />
-                                    </font>
-                                </Label>
-                                <HBox alignment="CENTER_RIGHT" spacing="15.0" HBox.hgrow="ALWAYS">
-                                    <children>
-                                        <TextField prefWidth="300.0" promptText="Search..." style="-fx-background-color: #FFFFFF20; -fx-background-radius: 20; -fx-text-fill: white; -fx-prompt-text-fill: #AAAAAA; -fx-padding: 8 15 8 15;" />
-                              <ImageView fitHeight="40.0" fitWidth="40.0">
-                                 <image>
-                                    <Image url="@../img/Mr.Customer.png" />
-                                 </image>
-                              </ImageView>
-                                    </children>
-                                </HBox>
-                            </children>
                             <padding>
                                 <Insets left="40.0" right="40.0" />
                             </padding>
+                     <children>
+                        <Label text="Dashboard" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label text="Welcome" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblName" text="name" textFill="#ffe5e5">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="33.0" fitWidth="33.0">
+                           <image>
+                              <Image url="@../img/Mr.Customer.png" />
+                           </image>
+                        </ImageView>
+                     </children>
                         </HBox>
 
                         <GridPane hgap="25.0" vgap="25.0" VBox.vgrow="ALWAYS">
@@ -205,6 +210,11 @@
                                 <Label text="Small Ad Mon" textFill="WHITE" />
                             </children>
                         </HBox>
+                  <JFXButton onAction="#btnLogOutOnAction" text="Log Out" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </JFXButton>
                     </children>
                     <padding>
                         <Insets bottom="40.0" left="30.0" right="30.0" top="40.0" />

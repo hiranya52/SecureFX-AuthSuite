@@ -31,4 +31,28 @@ public class UserService {
 
     }
 
+    public UserDTO getUser(String email) {
+        try {
+            User user = userRepository.getUser(email);
+
+            return new UserDTO(
+                    user.getFirstName(),
+                    user.getLastName(),
+                    user.getEmail(),
+                    user.getPassword()
+            );
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void logOutUser(String email) {
+        try {
+            userRepository.logOutUser(email);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
