@@ -5,6 +5,8 @@ import model.entity.User;
 import password.PasswordUtil;
 import repository.UserRepository;
 
+import java.sql.SQLException;
+
 public class UserService {
 
     UserRepository userRepository = new UserRepository();
@@ -20,7 +22,11 @@ public class UserService {
                 hashedPassword
         );
 
-        userRepository.addUser(user);
+        try {
+            userRepository.addUser(user);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
 
     }

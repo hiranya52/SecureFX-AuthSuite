@@ -11,7 +11,7 @@ public class DBConnection {
     private Connection connection;
 
     private DBConnection() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/book_rental_db","root","12345678");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/securefxauthsuite","root","12345678");
     }
 
     public static DBConnection getInstance() throws SQLException {
