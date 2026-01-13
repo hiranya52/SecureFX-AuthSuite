@@ -2,30 +2,25 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
-public class SignUpFormController {
+import java.io.IOException;
+
+public class SignInFormController {
 
     @FXML
     private TextField txtEmail;
 
     @FXML
-    private TextField txtFirstName;
-
-    @FXML
-    private PasswordField txtLastName;
-
-    @FXML
-    private Label txtLogIn;
-
-    @FXML
     private PasswordField txtPassword;
 
     @FXML
-    private PasswordField txtReEnterPassword;
+    private Label txtSignUp;
 
     private LogInFormController parentController;
 
@@ -34,14 +29,14 @@ public class SignUpFormController {
     }
 
     @FXML
-    void LogInOnAction(MouseEvent event) {
+    void SignUpOnAction(MouseEvent event) {
         if (parentController != null) {
-            parentController.loadUI("/view/sign_in.fxml");
+            parentController.loadUI("/view/sign_up.fxml");
         }
     }
 
     @FXML
-    void btnRegisterOnAction(ActionEvent event) {
+    void btnSignInOnAction(ActionEvent event) {
 
     }
 

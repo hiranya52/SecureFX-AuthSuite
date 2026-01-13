@@ -1,49 +1,45 @@
 package controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class LogInFormController {
+public class LogInFormController implements Initializable {
 
-    //-------------------Load UI-------------------//
-    private void loadUI(String path) {
+    public void loadUI(String path) {
         try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource(path));
-            signContent.getChildren().clear();
-            signContent.getChildren().add(pane);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+            AnchorPane pane = loader.load();
+
+            // Set parent reference depending on controller type
+            Object controller = loader.getController();
+
+            if (controller instanceof SignInFormController) {
+                ((SignInFormController) controller).setParentController(this);
+            } else if (controller instanceof SignUpFormController) {
+                ((SignUpFormController) controller).setParentController(this);
+            }
+
+            signContent.getChildren().setAll(pane);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+
+
     @FXML
     private AnchorPane signContent;
 
-    @FXML
-    private TextField txtEmail;
-
-    @FXML
-    private PasswordField txtPassword;
-
-    @FXML
-    private Label txtSignUp;
-
-    @FXML
-    void SignUpOnAction(MouseEvent event) {
-        loadUI("/view/sign_up.fxml");
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadUI("/view/sign_in.fxml");
     }
-
-    @FXML
-    void btnSignInOnAction(ActionEvent event) {
-
-    }
-
 }
+
