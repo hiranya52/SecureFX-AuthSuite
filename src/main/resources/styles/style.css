@@ -1,0 +1,16 @@
+.anchor-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+
+    -fx-effect: dropshadow(gaussian, #212845, 10, 0.3, 0, 4);
+    -fx-border-radius: 12;
+}
+
+
+.anchor-pane-2 {
+    -fx-background-color: white;
+    -fx-background-radius: 30;
+    -fx-effect: dropshadow(gaussian, #212845, 10, 0.3, 0, 4);
+    -fx-border-radius: 20;
+}
+
