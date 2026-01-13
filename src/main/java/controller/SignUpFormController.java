@@ -10,11 +10,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import model.dto.UserDTO;
+import service.UserService;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SignUpFormController implements Initializable {
+
+    UserService userService = new UserService();
 
     @FXML
     private Label lblReEnterPasswordValid;
@@ -115,6 +118,7 @@ public class SignUpFormController implements Initializable {
         }
 
         UserDTO userDTO = new UserDTO(firstName,lastName,email,password);
+        userService.addUser(userDTO);
 
     }
 
