@@ -2,16 +2,21 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import model.dto.UserDTO;
 import service.UserService;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -38,6 +43,9 @@ public class SignUpFormController implements Initializable {
     private Label txtLogIn;
 
     @FXML
+    private Label lblEmail;
+
+    @FXML
     private PasswordField txtPassword;
 
     @FXML
@@ -49,6 +57,17 @@ public class SignUpFormController implements Initializable {
         this.parentController = parent;
     }
 
+    @FXML
+    void emailOnAction(KeyEvent event) {
+
+        String email = txtEmail.getText();
+        if (!email.endsWith("@gmail.com")) {
+            lblEmail.setText("Email Invalid");
+        }else{
+            lblEmail.setText("Email Valid");
+        }
+
+    }
 
     @FXML
     void LogInOnAction(MouseEvent event) {
@@ -96,6 +115,14 @@ public class SignUpFormController implements Initializable {
         }
     }
 
+    public void clearFields(){
+        txtFirstName.clear();
+        txtLastName.clear();
+        txtPassword.clear();
+        txtReEnterPassword.clear();
+        txtEmail.clear();
+    }
+
     @FXML
     void btnRegisterOnAction(ActionEvent event) {
 
@@ -103,11 +130,6 @@ public class SignUpFormController implements Initializable {
         String lastName = txtLastName.getText();
         String email = txtEmail.getText();
         String password = txtPassword.getText();
-
-        if (!email.endsWith("@gmail.com")) {
-            System.out.println("Email must end with @gmail.com");
-            return;
-        }
 
         if (firstName.isEmpty() || email.isEmpty() || password.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -119,6 +141,26 @@ public class SignUpFormController implements Initializable {
 
         UserDTO userDTO = new UserDTO(firstName,lastName,email,password);
         userService.addUser(userDTO);
+        clearFields();
+
+        UserDTO user = userService.getUser(email);
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/dashboard.fxml"));
+            Parent root = loader.load();
+            DashboardController dashboardController = loader.getController();
+            dashboardController.setUser(user);
+            Stage stage = new Stage();
+            stage.setTitle("Dashboard");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            Stage currentStage = (Stage) txtEmail.getScene().getWindow();
+            currentStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

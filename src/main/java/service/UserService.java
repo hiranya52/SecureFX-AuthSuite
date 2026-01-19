@@ -27,8 +27,6 @@ public class UserService {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     public UserDTO getUser(String email) {
